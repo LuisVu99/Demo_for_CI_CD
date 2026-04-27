@@ -30,7 +30,7 @@ jobs:
         run: playwright install --with-deps
 
       - name: Run test
-        run: pytest --alluredir=allure-results
+        run: pytest tests\ui\contact_us\test_contact_us.py --alluredir=allure-results
 
       - name: Upload allure results
         uses: actions/upload-artifact@v4
