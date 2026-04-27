@@ -13,7 +13,7 @@ class ProductLocator:
     PRICE = "//div[@class='product-information']//span//span"
     AVAILABILITY = "//div[@class='product-information']//p[2]"
     CONDITION = "//div[@class='product-information']//p[3]"
-    BRAND = "//div[@class='product-information']//p[4]"
+    BRAND_1 = "//div[@class='product-information']//p[4]"
 
     #Write a review
     WRITE_REVIEW = "//ul[@class='nav nav-tabs']"
