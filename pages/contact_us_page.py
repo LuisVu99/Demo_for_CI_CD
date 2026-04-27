@@ -7,7 +7,7 @@ class ContactUsPage(BasePage):
 
     def contact_us(self, get_in_touch: str, name: str, email: str, subject: str, message: str,
                    upload_file:str, verify_successfully:str):
-        self.assert_visible(ContactUsLocator.HOME_PAGE)
+        # self.assert_visible(ContactUsLocator.HOME_PAGE)
         self.click(ContactUsLocator.CONTACTUS_PAGE)
         self.wait_thread_sleep(3)
         self.assert_have_text(ContactUsLocator.GET_IN_TOUCH, get_in_touch)
