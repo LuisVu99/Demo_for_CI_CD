@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","470","test_get_all_bookings","tests.api.test_api","2026-04-27","passed","2026-04-27","","test_get_all_booking","",""
+"","311","test_create_booking","tests.api.test_api","2026-04-27","passed","2026-04-27","","test_create_booking","",""
+"","8987","test_contact_us","tests.ui.contact_us","2026-04-27","passed","2026-04-27","","test_contact_us","",""
+"","296","test_get_token","tests.api.test_api","2026-04-27","passed","2026-04-27","","test_get_token","",""
+"","871","test_edit_booking","tests.api.test_api","2026-04-27","passed","2026-04-27","","test_edit_booking","",""
+"","12520","test_delete_booking","tests.api.test_api","2026-04-27","passed","2026-04-27","","test_delete_booking","",""
