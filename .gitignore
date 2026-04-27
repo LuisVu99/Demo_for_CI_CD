@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+.eggs/
+*.manifest
+*.spec
+
+# Virtual environment
+venv/
+.env/
+ENV/
+env/
+.venv/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.iml
+
+# Logs & Cache
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+.cache/
+pytest_cache/
+coverage/
+*.cover
+*.coverage
+*.cov
+*.pid
+*.gz
+*.swp
+*.swo
+
+# Playwright specific
+test-results/
+playwright-report/
+blob-report/
+trace.zip
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+allure-results/
+allure-report/
+allure-history/
+
+auth.json
+cookies.json
+storageState.json
+
+*.webm

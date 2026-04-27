@@ -1,0 +1,88 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install allure-pytest
+          pip install playwright
+          pip install pytest-xdist pytest-rerunfailures
+          python -m playwright install --with-deps
+
+      - name: Check environment health
+        run: |
+          echo "=== Installed Python packages ==="
+          pip list | grep -E "allure-pytest|pytest-xdist|pytest-rerunfailures|playwright|pytest-playwright"
+          
+          echo "=== Check Playwright browsers ==="
+          python -m playwright install --dry-run
+
+      - name: Run tests (generate allure-results)
+        run: |
+          pytest --env=dev --browser-name=chromium --alluredir=allure-results
+          pytest -v -n 2 --reruns 3 --env=dev --browser-name=chromium --alluredir=allure-results
+
+      - name: Upload allure results artifact (retained 7 days)
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
+          retention-days: 7
+
+  allure-report:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download allure results
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
+
+      - name: Checkout gh-pages history
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+        continue-on-error: true
+
+      - name: Copy history (if exists)
+        run: |
+          mkdir -p allure-results/history
+          if [ -d gh-pages/history ]; then
+            cp -r gh-pages/history allure-results/ || true
+          fi
+
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@v1.7
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+          keep_reports: 20
+
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+          publish_branch: gh-pages
