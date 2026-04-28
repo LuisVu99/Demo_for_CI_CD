@@ -30,7 +30,7 @@ jobs:
         run: playwright install --with-deps
 
       - name: Run test
-        run: pytest tests/ui/contact_us/test_contact_us.py --alluredir=allure-results
+        run: pytest --alluredir=allure-results
         env:
           ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
