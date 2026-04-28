@@ -7,3 +7,4 @@ PyYAML
 allure-pytest
 Faker
 jsonschema
+python-dotenv

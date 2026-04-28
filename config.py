@@ -1,3 +1,9 @@
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
 # 1. Environment Config (môi trường chạy test)
 class ConfigUrl:
     BASE_URL = "https://www.automationexercise.com"
@@ -10,16 +16,16 @@ class ConfigUrl:
 
 # 2. Credentials (account test cố định)
 class Credentials:
-    ADMIN_EMAIL = "Luisvu@example.com"
-    ADMIN_PASSWORD = "Luisvu123"
-    ADMIN_USERNAME = "Luis Vu"
-    USER_FULL_NAME = "Luis Luis Vu"
-    USER_PASSWORD = "luistest12!@"
-    USER_USERNAME = "Luisvu"
+    ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "{{ADMIN_EMAIL_PLACEHOLDER}}")
+    ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "{{ADMIN_PASSWORD_PLACEHOLDER}}")
+    ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "Luis Vu")
+    USER_FULL_NAME = os.getenv("USER_FULL_NAME", "Luis Luis Vu")
+    USER_PASSWORD = os.getenv("USER_PASSWORD", "{{USER_PASSWORD_PLACEHOLDER}}")
+    USER_USERNAME = os.getenv("USER_USERNAME", "Luisvu")
 
 # 3. Browser Settings
 class BrowserConfig:
-    HEADLESS = True
+    HEADLESS = False
     DEFAULT_TIMEOUT = 30000
     VIEWPORT = {"width": 1920, "height": 1080}
 
