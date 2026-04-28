@@ -10,7 +10,8 @@ from tests.api.helpers.api_template import api_create_template, api_delete_templ
 from tests.api.helpers.api_project import api_create_project
 from tests.api.helpers.api_client import api_create_client, api_delete_client
 from tests.api.helpers.api_task import api_create_task, api_delete_task
-from config import ConfigUrl, BrowserConfig, Paths, ENVIRONMENTS
+from config import ConfigUrl, BrowserConfig, Paths, ENVIRONMENTS, Credentials
+from pages.login_page import LoginPage
 
 #Browser list
 BROWSER = ["chromium", "firefox", "webkit"]
@@ -95,6 +96,33 @@ def page(context, request):
         pass
 
     page.close()
+
+@pytest.fixture(scope="function")
+def login(page):
+    """Login fixture - use this to automatically login before test.
+    
+    Usage in your test:
+        def test_something(login):
+            login.goto("some-url")
+            ...
+    """
+    login_page = LoginPage(page)
+    # Perform login with admin credentials
+    login_page.navigate_to_login()
+    login_page.login(Credentials.ADMIN_EMAIL, Credentials.ADMIN_PASSWORD, Credentials.ADMIN_USERNAME)
+    # Return the logged-in page
+    return page
+
+@pytest.fixture(scope="function")
+def login_page_instance(page):
+    """LoginPage instance fixture - use this if you need to call LoginPage methods.
+    
+    Usage in your test:
+        def test_something(login_page_instance):
+            login_page_instance.login(email, password, verify_text)
+            ...
+    """
+    return LoginPage(page)
     
 def pytest_runtest_teardown(item, nextitem):
     time.sleep(2)
