@@ -1,0 +1,14 @@
+Click successfully //ul[@class='nav navbar-nav']//li[4]
+Fill successfully //input[@data-qa='login-email'] with text 'Luisvu@example.com'
+Fill successfully //input[@data-qa='login-password'] with text 'Luisvu123'
+Click successfully //button[@data-qa='login-button']
+Assert Passed: //ul[@class='nav navbar-nav']//li[10]//a contains text ''
+Click successfully (//a[@class='btn btn-default add-to-cart'])[1]
+Click successfully //button[.='Continue Shopping']
+Click successfully (//a[@class='btn btn-default add-to-cart'])[5]
+Click successfully //p[@class='text-center']//a//u
+Click successfully //a[@class='btn btn-default check_out']
+Assert Passed: //div[@id='ordermsg']//label has text 'If you would like to add a comment about your order, please write it in the field below.'
+Fill successfully //div[@id='ordermsg']//textarea with text 'This is a comment of Luis'
+Click successfully //a[.='Place Order']
+Click successfully //ul[@class='nav navbar-nav']//li[3]

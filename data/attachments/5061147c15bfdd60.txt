@@ -1,7 +1,7 @@
 Click successfully //a[.=' Contact us']
 Assert Passed: //div[@class='contact-form']//h2 has text 'Get In Touch'
-Fill successfully //input[@data-qa='name'] with text 'wsalas'
-Fill successfully //input[@data-qa='email'] with text 'fandersen@luisxyz.com'
+Fill successfully //input[@data-qa='name'] with text 'warnerdustin'
+Fill successfully //input[@data-qa='email'] with text 'amy46@luisxyz.com'
 Fill successfully //input[@data-qa='subject'] with text 'This is a subject'
 Fill successfully #message with text 'This is a message'
 [Popup] Message: Press OK to proceed!
