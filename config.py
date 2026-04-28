@@ -25,7 +25,7 @@ class Credentials:
 
 # 3. Browser Settings
 class BrowserConfig:
-    HEADLESS = False
+    HEADLESS = True
     DEFAULT_TIMEOUT = 30000
     VIEWPORT = {"width": 1920, "height": 1080}
 
