@@ -4,9 +4,36 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
+# Get environment name (dev, staging, prod, Developer)
+ENVIRONMENT = os.getenv("ENVIRONMENT", "Developer")
+
+# Define environments dict
+ENVIRONMENTS = {
+    "dev": {
+        "url": "https://demo.growcrm.io",
+        "username": "admin@example.com",
+        "password": "growcrm"
+    },
+    "staging": {
+        "url": "https://demo.growcrm.io",
+        "username": "admin@example.com",
+        "password": "growcrm"
+    },
+    "prod": {
+        "url": "https://demo.growcrm.io",
+        "username": "admin@example.com",
+        "password": "growcrm"
+    },
+    "Developer": {
+        "url": os.getenv("BASE_URL", "{{BASE_URL_PLACEHOLDER}}"),
+        "username": "admin@example.com",
+        "password": "growcrm"
+    }
+}
+
 # 1. Environment Config (môi trường chạy test)
 class ConfigUrl:
-    BASE_URL = os.getenv("BASE_URL", "{{BASE_URL_PLACEHOLDER}}")
+    BASE_URL = ENVIRONMENTS[ENVIRONMENT]["url"]
     LOGIN_URL = BASE_URL + "/login"
     PROJECT_URL = BASE_URL + "/projects"
     CLIENT_URL = BASE_URL + "/clients"
@@ -41,21 +68,3 @@ class Paths:
     DOWNLOAD_DIR = "downloads/"
     REPORT_DIR = "reports/"
     STORAGE_FILE = "auth.json"
-
-ENVIRONMENTS ={
-        "dev":  {
-            "url": "https://demo.growcrm.io",
-            "username": "admin@example.com",
-            "password": "growcrm"
-        },
-        "staging": {
-            "url": "https://demo.growcrm.io",
-            "username": "admin@example.com",
-            "password": "growcrm"
-        }, 
-        "prod": {
-            "url": "https://demo.growcrm.io",
-            "username": "admin@example.com",
-            "password": "growcrm"
-        }
-    }
