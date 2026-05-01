@@ -4,10 +4,14 @@ on:
   # pull_request:
   #   branches: [main]
 
-  schedule:
+  schedule:   #Run CI theo lịch
     - cron: '40 9 * * *' #Run at:7:00 am utc + 7
 
-  workflow_dispatch:
+  workflow_dispatch:   #Run manually
+
+  push:
+    tags:   #Run theo tag
+      - 'v*'
 
 jobs:
   test:
