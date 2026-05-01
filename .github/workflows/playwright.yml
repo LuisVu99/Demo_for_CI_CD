@@ -1,8 +1,8 @@
 name: QA Automation
 
 on:
-  # pull_request:
-  #   branches: [main]
+  pull_request:
+    branches: [main]
 
   schedule:   #Run CI theo lịch
     - cron: '40 9 * * *' #Run at:7:00 am utc + 7
