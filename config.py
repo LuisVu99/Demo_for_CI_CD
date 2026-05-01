@@ -5,25 +5,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Get environment name (dev, staging, prod, Developer)
-ENVIRONMENT = os.getenv("ENVIRONMENT", "Developer") or "Developer"
+ENVIRONMENT = os.getenv("ENVIRONMENT", "Developer")
 
 # Define environments dict
 ENVIRONMENTS = {
-    "dev": {
-        "url": "https://demo.growcrm.io",
-        "username": "admin@example.com",
-        "password": "growcrm"
-    },
-    "staging": {
-        "url": "https://demo.growcrm.io",
-        "username": "admin@example.com",
-        "password": "growcrm"
-    },
-    "prod": {
-        "url": "https://demo.growcrm.io",
-        "username": "admin@example.com",
-        "password": "growcrm"
-    },
     "Developer": {
         "url": os.getenv("BASE_URL", "{{BASE_URL_PLACEHOLDER}}"),
         "username": "admin@example.com",

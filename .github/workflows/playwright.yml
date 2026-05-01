@@ -44,7 +44,7 @@ jobs:
       - name: Run test
         run: pytest --alluredir=allure-results
         env:
-          ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+          ENVIRONMENT: Developer
           BASE_URL: ${{ vars.BASE_URL }}
           ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
