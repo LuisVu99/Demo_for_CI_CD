@@ -5,7 +5,7 @@ on:
   #   branches: [main]
 
   schedule:
-    - cron: '32 9 * * *' #Run at:7:00 am utc + 7
+    - cron: '40 9 * * *' #Run at:7:00 am utc + 7
 
   workflow_dispatch:
 
