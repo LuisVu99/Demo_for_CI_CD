@@ -12,7 +12,7 @@ def test_reject_leave(page):
     add_review = "This is a review by Luis Vu"
     verify_successful = "Thank you for your review."
 
-    #2. Navigate to product
+    #2. Navigate to product 1
     product_page.navigate_to_product()
     #3. Verify all product
     product_page.verify_all_product(all_product_title)
