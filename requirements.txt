@@ -5,6 +5,6 @@ pytest-html
 pytest-xdist
 PyYAML
 allure-pytest
-Faker
+# Faker
 jsonschema
 python-dotenv
