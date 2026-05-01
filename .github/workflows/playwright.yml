@@ -50,6 +50,7 @@ jobs:
           USER_FULL_NAME: ${{ secrets.USER_FULL_NAME }}
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
           USER_USERNAME: ${{ secrets.USER_USERNAME }}
+          BASE_URL: ${{secrets.BASE_URL}}
 
       - name: Upload allure results
         uses: actions/upload-artifact@v4
