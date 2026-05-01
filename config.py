@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Get environment name (dev, staging, prod, Developer)
-ENVIRONMENT = os.getenv("ENVIRONMENT", "Developer")
+ENVIRONMENT = os.getenv("ENVIRONMENT", "Developer") or "Developer"
 
 # Define environments dict
 ENVIRONMENTS = {
