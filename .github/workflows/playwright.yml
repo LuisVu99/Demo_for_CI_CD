@@ -1,11 +1,11 @@
 name: QA Automation
 
 on:
-  pull_request:
-    branches: [main]
+  # pull_request:
+  #   branches: [main]
 
   schedule:
-    - cron: '30 9 * * *' #Run at:7:00 am utc + 7
+    - cron: '32 9 * * *' #Run at:7:00 am utc + 7
 
 jobs:
   test:
