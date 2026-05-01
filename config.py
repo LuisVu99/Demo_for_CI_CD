@@ -18,10 +18,10 @@ class ConfigUrl:
 class Credentials:
     ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "{{ADMIN_EMAIL_PLACEHOLDER}}")
     ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "{{ADMIN_PASSWORD_PLACEHOLDER}}")
-    ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "Luis Vu")
-    USER_FULL_NAME = os.getenv("USER_FULL_NAME", "Luis Luis Vu")
+    ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "{{ADMIN_USERNAME_PLACEHOLDER}}")
+    USER_FULL_NAME = os.getenv("USER_FULL_NAME", "{{USER_FULL_NAME_PLACEHOLDER}}")
     USER_PASSWORD = os.getenv("USER_PASSWORD", "{{USER_PASSWORD_PLACEHOLDER}}")
-    USER_USERNAME = os.getenv("USER_USERNAME", "Luisvu")
+    USER_USERNAME = os.getenv("USER_USERNAME", "{{USER_USERNAME_PLACEHOLDER}}")
 
 # 3. Browser Settings
 class BrowserConfig:
