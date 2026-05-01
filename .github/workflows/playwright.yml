@@ -13,6 +13,9 @@ on:
     tags:   #Run theo tag
       - 'v*'
 
+  release:
+    types: [published] #Run khi release được publish
+
 jobs:
   test:
     runs-on: ubuntu-latest
