@@ -6,7 +6,7 @@ load_dotenv()
 
 # 1. Environment Config (môi trường chạy test)
 class ConfigUrl:
-    BASE_URL = "https://www.automationexercise.com"
+    BASE_URL = os.getenv("BASE_URL", "{{BASE_URL_PLACEHOLDER}}")
     LOGIN_URL = BASE_URL + "/login"
     PROJECT_URL = BASE_URL + "/projects"
     CLIENT_URL = BASE_URL + "/clients"
