@@ -14,7 +14,7 @@ on:
       - 'v*'
 
   release:
-    types: [published] #Run khi release được publish
+    types: [published] #Run khi release được publis
 
 jobs:
   test:
