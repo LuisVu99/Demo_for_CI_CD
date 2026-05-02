@@ -4,8 +4,11 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-# Get environment name (dev, staging, prod, Developer)
-ENVIRONMENT = os.getenv("ENVIRONMENT", "Developer") or "Developer"
+# Get environment name
+ENVIRONMENT = os.getenv("ENVIRONMENT", "developer") or "developer"
+
+# Get base_url from environment variable
+BASE_URL_ENV = os.getenv("base_url", "{{BASE_URL_PLACEHOLDER}}")
 
 # Define environments dict
 ENVIRONMENTS = {
@@ -24,8 +27,8 @@ ENVIRONMENTS = {
         "username": "admin@example.com",
         "password": "growcrm"
     },
-    "Developer": {
-        "url": os.getenv("BASE_URL", "{{BASE_URL_PLACEHOLDER}}"),
+    "developer": {
+        "url": BASE_URL_ENV,
         "username": "admin@example.com",
         "password": "growcrm"
     }
