@@ -44,7 +44,7 @@ jobs:
       - name: Run test
         run: pytest --alluredir=allure-results
         env:
-          ENVIRONMENT: Developer
+          ENVIRONMENT: ${{ vars.ENVIRONMENT }}
           BASE_URL: ${{ vars.BASE_URL }}
           ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
@@ -52,16 +52,6 @@ jobs:
           USER_FULL_NAME: ${{ secrets.USER_FULL_NAME }}
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
           USER_USERNAME: ${{ secrets.USER_USERNAME }}
-
-      - name: Debug BASE_URL
-        run: |
-          echo "BASE_URL=$BASE_URL"
-          if [ -z "$BASE_URL" ]; then
-            echo "BASE_URL is EMPTY ❌"
-            exit 1
-          else
-            echo "BASE_URL OK ✅"
-          fi
 
       - name: Upload allure results
         uses: actions/upload-artifact@v4
