@@ -10,20 +10,20 @@ load_dotenv()
 ENVIRONMENT = os.getenv("ENVIRONMENT", "developer") or "developer"
 
 # ============================================================================
-# 2. ENVIRONMENT STRUCTURE (Non-sensitive defaults only)
+# 2. ENVIRONMENT STRUCTURE (All URLs from variables - no hardcoding)
 # ============================================================================
 ENVIRONMENTS = {
     "dev": {
-        "url": "https://demo.growcrm.io",
+        "url": os.getenv("DEV_BASE_URL"),  # From .env or GitHub variable
     },
     "staging": {
-        "url": "https://staging.growcrm.io",
+        "url": os.getenv("STAGING_BASE_URL"),  # From .env or GitHub variable
     },
     "prod": {
-        "url": "https://growcrm.io",
+        "url": os.getenv("PROD_BASE_URL"),  # From .env or GitHub variable
     },
     "developer": {
-        "url": os.getenv("base_url", "https://www.automationexercise.com"),
+        "url": os.getenv("base_url"),  # From .env or GitHub variable
     }
 }
 
