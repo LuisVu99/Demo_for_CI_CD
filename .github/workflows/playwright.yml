@@ -43,7 +43,8 @@ jobs:
         run: playwright install --with-deps
 
       - name: Run test
-        run: pytest --alluredir=allure-results
+        id: test
+        run: pytest --alluredir=allure-results -v --tb=short
         env:
           base_url: ${{ vars.base_url }}
           ADMIN_EMAIL: ${{ secrets.admin_email }}
@@ -57,7 +58,13 @@ jobs:
         if: always()
         run: |
           STATUS=${{ job.status }}
-
+          BRANCH=${{ github.ref_name }}
+          COMMIT=${{ github.sha }}
+          COMMIT_SHORT=$(echo $COMMIT | cut -c1-7)
+          
+          # Count test results from allure-results
+          PASSED=$(find allure-results -name "*.json" -type f | wc -l 2>/dev/null || echo "0")
+          
           if [ "$STATUS" == "success" ]; then
             ICON="✅"
             MSG="Test PASSED"
@@ -68,9 +75,13 @@ jobs:
 
           curl -X POST -H 'Content-type: application/json' \
           --data "{
-            \"text\": \"$ICON $MSG
-            \nRepo: $GITHUB_REPOSITORY
-            \nRun: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID\"
+            \"text\": \"$ICON *$MSG*
+            \n📊 Test Results
+            \n├─ Branch: \`$BRANCH\`
+            \n├─ Commit: \`$COMMIT_SHORT\`
+            \n├─ Tests: $PASSED executed
+            \n└─ Repo: <https://github.com/$GITHUB_REPOSITORY|$GITHUB_REPOSITORY>
+            \n\n🔗 <https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID|View Full Report>\"
           }" \
           ${{ secrets.SLACK_WEBHOOK_URL }}
 
