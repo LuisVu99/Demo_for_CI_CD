@@ -44,7 +44,7 @@ class ConfigUrl:
 # ============================================================================
 class Credentials:
     # Local: load từ .env | CI/CD: load từ GitHub secrets
-    # ADMIN_EMAIL = os.getenv("ADMIN_EMAIL")
+    ADMIN_EMAIL = os.getenv("ADMIN_EMAIL")
     ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
     ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
     USER_FULL_NAME = os.getenv("USER_FULL_NAME")
