@@ -3,8 +3,8 @@ Assert Passed: //h2[@class='title text-center'] has text 'All Products'
 Found 34 items on the page
 Click successfully (//ul[@class='nav nav-pills nav-justified']//a)[1]
 Assert Passed: //ul[@class='nav nav-tabs'] has text 'Write Your Review'
-Fill successfully #name with text 'jacob40'
-Fill successfully #email with text 'walkermatthew@luisxyz.com'
+Fill successfully #name with text 'jaredpeters'
+Fill successfully #email with text 'deannabradley@luisxyz.com'
 Fill successfully #review with text 'This is a review by Luis Vu'
 Click successfully #button-review
 Assert Passed: //div[@class='alert-success alert']//span has text 'Thank you for your review.'
