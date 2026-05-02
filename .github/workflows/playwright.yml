@@ -53,6 +53,27 @@ jobs:
           USER_PASSWORD: ${{ secrets.user_password }}
           USER_USERNAME: ${{ secrets.user_username }}
 
+      - name: Notify Slack
+        if: always()
+        run: |
+          STATUS=${{ job.status }}
+
+          if [ "$STATUS" == "success" ]; then
+            ICON="✅"
+            MSG="Test PASSED"
+          else
+            ICON="❌"
+            MSG="Test FAILED"
+          fi
+
+          curl -X POST -H 'Content-type: application/json' \
+          --data "{
+            \"text\": \"$ICON $MSG
+            \nRepo: $GITHUB_REPOSITORY
+            \nRun: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID\"
+          }" \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+
       - name: Upload allure results
         uses: actions/upload-artifact@v4
         with:
