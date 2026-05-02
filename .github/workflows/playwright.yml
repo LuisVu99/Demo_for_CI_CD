@@ -19,6 +19,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    environment: developer
 
     steps:
       - name: Checkout
@@ -44,8 +45,7 @@ jobs:
       - name: Run test
         run: pytest --alluredir=allure-results
         env:
-          ENVIRONMENT: ${{ vars.ENVIRONMENT }}
-          BASE_URL: ${{ vars.BASE_URL }}
+          base_url: ${{ vars.base_url }}
           ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
           ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
