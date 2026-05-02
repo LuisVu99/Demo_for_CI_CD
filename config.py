@@ -9,12 +9,15 @@ ENVIRONMENT = os.getenv("ENVIRONMENT", "developer") or "developer"
 
 # Get base_url from environment variable
 BASE_URL_ENV = os.getenv("base_url", "{{BASE_URL_PLACEHOLDER}}")
+ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "{{ADMIN_EMAIL_PLACEHOLDER}}")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "{{ADMIN_PASSWORD_PLACEHOLDER}}")
+ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "{{ADMIN_USERNAME_PLACEHOLDER}}")
 
 # Define environments dict
 ENVIRONMENTS = {
     "dev": {
         "url": "https://demo.growcrm.io",
-        "username": "admin@example.com",
+        "email": "admin@example.com",
         "password": "growcrm"
     },
     "staging": {
@@ -29,8 +32,9 @@ ENVIRONMENTS = {
     },
     "developer": {
         "url": BASE_URL_ENV,
-        "username": "admin@example.com",
-        "password": "growcrm"
+        "email": ADMIN_EMAIL,
+        "password": ADMIN_PASSWORD,
+        "username": ADMIN_USERNAME
     }
 }
 
@@ -46,9 +50,9 @@ class ConfigUrl:
 
 # 2. Credentials (account test cố định)
 class Credentials:
-    ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "{{ADMIN_EMAIL_PLACEHOLDER}}")
-    ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "{{ADMIN_PASSWORD_PLACEHOLDER}}")
-    ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "{{ADMIN_USERNAME_PLACEHOLDER}}")
+    ADMIN_EMAIL = ENVIRONMENTS[ENVIRONMENT]["email"]
+    ADMIN_PASSWORD = ENVIRONMENTS[ENVIRONMENT]["password"]
+    ADMIN_USERNAME = ENVIRONMENTS[ENVIRONMENT]["username"]
     USER_FULL_NAME = os.getenv("USER_FULL_NAME", "{{USER_FULL_NAME_PLACEHOLDER}}")
     USER_PASSWORD = os.getenv("USER_PASSWORD", "{{USER_PASSWORD_PLACEHOLDER}}")
     USER_USERNAME = os.getenv("USER_USERNAME", "{{USER_USERNAME_PLACEHOLDER}}")

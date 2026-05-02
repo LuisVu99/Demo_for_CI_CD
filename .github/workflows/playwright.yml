@@ -46,12 +46,12 @@ jobs:
         run: pytest --alluredir=allure-results
         env:
           base_url: ${{ vars.base_url }}
-          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
-          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-          ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
-          USER_FULL_NAME: ${{ secrets.USER_FULL_NAME }}
-          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
-          USER_USERNAME: ${{ secrets.USER_USERNAME }}
+          ADMIN_EMAIL: ${{ secrets.admin_email }}
+          ADMIN_PASSWORD: ${{ secrets.admin_password }}
+          ADMIN_USERNAME: ${{ secrets.admin_username }}
+          USER_FULL_NAME: ${{ secrets.user_full_name }}
+          USER_PASSWORD: ${{ secrets.user_password }}
+          USER_USERNAME: ${{ secrets.user_username }}
 
       - name: Upload allure results
         uses: actions/upload-artifact@v4
