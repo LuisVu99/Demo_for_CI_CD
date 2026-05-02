@@ -11,4 +11,3 @@ Click successfully //a[@class='btn btn-default check_out']
 Assert Passed: //div[@id='ordermsg']//label has text 'If you would like to add a comment about your order, please write it in the field below.'
 Fill successfully //div[@id='ordermsg']//textarea with text 'This is a comment of Luis'
 Click successfully //a[.='Place Order']
-Click successfully //ul[@class='nav navbar-nav']//li[3]
