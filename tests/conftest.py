@@ -43,7 +43,7 @@ def pytest_runtest_makereport(item, call):
 @pytest.fixture(scope="function")
 def page_with_video(context, request):
     page = context.new_page(record_video_dir = "videos/")
-    page.goto(ConfigUrl.BASE_URL)
+    page.goto(ConfigUrl.base_url())
     yield page
     if hasattr(page, "video") and page.video:
         video_path = page.video.path()
@@ -80,7 +80,7 @@ def context(browser):
 def page(context, request):
     """Khởi tạo Page, luôn chụp screenshot, attach video khi fail."""
     page = context.new_page()
-    page.goto(ConfigUrl.BASE_URL)
+    page.goto(ConfigUrl.base_url())
     yield page
 
     # Always capture screenshot
