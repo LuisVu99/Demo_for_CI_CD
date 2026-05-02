@@ -5,40 +5,41 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Get environment name (dev, staging, prod, Developer)
-ENVIRONMENT = os.getenv("ENVIRONMENT", "Developer")
+ENVIRONMENT = os.getenv("ENVIRONMENT", "Developer") or "Developer"
 
+# Define environments dict
+ENVIRONMENTS = {
+    "dev": {
+        "url": "https://demo.growcrm.io",
+        "username": "admin@example.com",
+        "password": "growcrm"
+    },
+    "staging": {
+        "url": "https://demo.growcrm.io",
+        "username": "admin@example.com",
+        "password": "growcrm"
+    },
+    "prod": {
+        "url": "https://demo.growcrm.io",
+        "username": "admin@example.com",
+        "password": "growcrm"
+    },
+    "Developer": {
+        "url": os.getenv("BASE_URL", "{{BASE_URL_PLACEHOLDER}}"),
+        "username": "admin@example.com",
+        "password": "growcrm"
+    }
+}
+
+# 1. Environment Config (môi trường chạy test)
 class ConfigUrl:
-
-    @staticmethod
-    def base_url():
-        base_url = os.getenv("BASE_URL")
-        if not base_url:
-            raise ValueError("BASE_URL is missing!")
-        return base_url
-
-    @classmethod
-    def login_url(cls):
-        return cls.base_url() + "/login"
-
-    @classmethod
-    def project_url(cls):
-        return cls.base_url() + "/projects"
-
-    @classmethod
-    def client_url(cls):
-        return cls.base_url() + "/clients"
-
-    @classmethod
-    def user_url(cls):
-        return cls.base_url() + "/contacts"
-
-    @classmethod
-    def template_url(cls):
-        return cls.base_url() + "/templates/projects"
-
-    @classmethod
-    def task_url(cls):
-        return cls.base_url() + "/tasks"
+    BASE_URL = ENVIRONMENTS[ENVIRONMENT]["url"]
+    LOGIN_URL = BASE_URL + "/login"
+    PROJECT_URL = BASE_URL + "/projects"
+    CLIENT_URL = BASE_URL + "/clients"
+    USER_URL = BASE_URL + "/contacts"
+    TEMPLATE_URL = BASE_URL + "/templates/projects"
+    TASK_URL = BASE_URL + "/tasks"
 
 # 2. Credentials (account test cố định)
 class Credentials:
