@@ -53,10 +53,15 @@ jobs:
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
           USER_USERNAME: ${{ secrets.USER_USERNAME }}
 
-      - name: Debug env
+      - name: Debug BASE_URL
         run: |
-          echo "ENVIRONMENT=$ENVIRONMENT"
           echo "BASE_URL=$BASE_URL"
+          if [ -z "$BASE_URL" ]; then
+            echo "BASE_URL is EMPTY ❌"
+            exit 1
+          else
+            echo "BASE_URL OK ✅"
+          fi
 
       - name: Upload allure results
         uses: actions/upload-artifact@v4
