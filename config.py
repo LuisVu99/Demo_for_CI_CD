@@ -1,44 +1,35 @@
 import os
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
+# Load environment variables from .env file (local development only)
 load_dotenv()
 
-# Get environment name
+# ============================================================================
+# 1. ENVIRONMENT SELECTION
+# ============================================================================
 ENVIRONMENT = os.getenv("ENVIRONMENT", "developer") or "developer"
 
-# Get base_url from environment variable
-BASE_URL_ENV = os.getenv("base_url", "{{BASE_URL_PLACEHOLDER}}")
-ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "{{ADMIN_EMAIL_PLACEHOLDER}}")
-ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "{{ADMIN_PASSWORD_PLACEHOLDER}}")
-ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "{{ADMIN_USERNAME_PLACEHOLDER}}")
-
-# Define environments dict
+# ============================================================================
+# 2. ENVIRONMENT STRUCTURE (Non-sensitive defaults only)
+# ============================================================================
 ENVIRONMENTS = {
     "dev": {
         "url": "https://demo.growcrm.io",
-        "email": "admin@example.com",
-        "password": "growcrm"
     },
     "staging": {
-        "url": "https://demo.growcrm.io",
-        "username": "admin@example.com",
-        "password": "growcrm"
+        "url": "https://staging.growcrm.io",
     },
     "prod": {
-        "url": "https://demo.growcrm.io",
-        "username": "admin@example.com",
-        "password": "growcrm"
+        "url": "https://growcrm.io",
     },
     "developer": {
-        "url": BASE_URL_ENV,
-        "email": ADMIN_EMAIL,
-        "password": ADMIN_PASSWORD,
-        "username": ADMIN_USERNAME
+        "url": os.getenv("base_url", "https://www.automationexercise.com"),
     }
 }
 
-# 1. Environment Config (môi trường chạy test)
+# ============================================================================
+# 3. URLs CONFIG (derived from ENVIRONMENT)
+# ============================================================================
 class ConfigUrl:
     BASE_URL = ENVIRONMENTS[ENVIRONMENT]["url"]
     LOGIN_URL = BASE_URL + "/login"
@@ -48,29 +39,38 @@ class ConfigUrl:
     TEMPLATE_URL = BASE_URL + "/templates/projects"
     TASK_URL = BASE_URL + "/tasks"
 
-# 2. Credentials (account test cố định)
+# ============================================================================
+# 4. CREDENTIALS (sensitive - loaded from environment variables only)
+# ============================================================================
 class Credentials:
-    ADMIN_EMAIL = ENVIRONMENTS[ENVIRONMENT]["email"]
-    ADMIN_PASSWORD = ENVIRONMENTS[ENVIRONMENT]["password"]
-    ADMIN_USERNAME = ENVIRONMENTS[ENVIRONMENT]["username"]
-    USER_FULL_NAME = os.getenv("USER_FULL_NAME", "{{USER_FULL_NAME_PLACEHOLDER}}")
-    USER_PASSWORD = os.getenv("USER_PASSWORD", "{{USER_PASSWORD_PLACEHOLDER}}")
-    USER_USERNAME = os.getenv("USER_USERNAME", "{{USER_USERNAME_PLACEHOLDER}}")
+    # Local: load từ .env | CI/CD: load từ GitHub secrets
+    ADMIN_EMAIL = os.getenv("ADMIN_EMAIL")
+    ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
+    ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
+    USER_FULL_NAME = os.getenv("USER_FULL_NAME")
+    USER_PASSWORD = os.getenv("USER_PASSWORD")
+    USER_USERNAME = os.getenv("USER_USERNAME")
 
-# 3. Browser Settings
+# ============================================================================
+# 5. BROWSER SETTINGS (non-sensitive defaults)
+# ============================================================================
 class BrowserConfig:
     HEADLESS = True
     DEFAULT_TIMEOUT = 30000
     VIEWPORT = {"width": 1920, "height": 1080}
 
-# 4. API Config (nếu có test API)
+# ============================================================================
+# 6. API CONFIG (non-sensitive)
+# ============================================================================
 class APIConfig:
     API_BASE_URL = "https://demo.growcrm.io/api"
     DEFAULT_HEADERS = {
         "Content-Type": "application/json"
     }
 
-# 5. Other Constants (timeout, path, report)
+# ============================================================================
+# 7. PATHS & CONSTANTS (non-sensitive)
+# ============================================================================
 class Paths:
     DOWNLOAD_DIR = "downloads/"
     REPORT_DIR = "reports/"
