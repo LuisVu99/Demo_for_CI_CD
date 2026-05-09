@@ -1,0 +1,1 @@
+Request URL: <tests.api.booking_api.BookingAPI object at 0x7fa521d2c710>/booking/2379
