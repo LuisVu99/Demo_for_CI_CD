@@ -1,5 +1,0 @@
-Click successfully //ul[@class='nav navbar-nav']//li[2]
-Assert Passed: //h2[@class='title text-center'] has text 'All Products'
-Found 34 items on the page
-Click successfully (//ul[@class='nav nav-pills nav-justified']//a)[1]
-Assert Failed: //ul[@class='nav nav-tabs'] does not have text 'Write Your Review'
