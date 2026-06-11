@@ -1,0 +1,2 @@
+Click successfully //ul[@class='nav navbar-nav']//li[2]
+Assert Failed: //h2[@class='title text-center'] does not have text 'All Products'
