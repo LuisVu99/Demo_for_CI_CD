@@ -12,6 +12,7 @@ from tests.api.helpers.api_client import api_create_client, api_delete_client
 from tests.api.helpers.api_task import api_create_task, api_delete_task
 from config import ConfigUrl, BrowserConfig, Paths, ENVIRONMENTS, Credentials
 from pages.login_page import LoginPage
+from pages.dashboard_page import DashboardPage
 
 #Browser list
 BROWSER = ["chromium", "firefox", "webkit"]
@@ -81,6 +82,7 @@ def page(context, request):
     """Khởi tạo Page, luôn chụp screenshot, attach video khi fail."""
     page = context.new_page()
     page.goto(ConfigUrl.BASE_URL)
+    LoginPage(page).login(Credentials.ADMIN_EMAIL, Credentials.ADMIN_PASSWORD)
     yield page
 
     # Always capture screenshot
@@ -106,10 +108,14 @@ def login_page(page):
             login.goto("some-url")
             ...
     """
-    login_page = LoginPage(page)
-    login_page.login(Credentials.ADMIN_EMAIL, Credentials.ADMIN_PASSWORD)
-    # Return the logged-in page
-    return login_page
+    # login_page = LoginPage(page)
+    # login_page.login(Credentials.ADMIN_EMAIL, Credentials.ADMIN_PASSWORD)
+    # # Return the logged-in page
+    return LoginPage(page)
+
+@pytest.fixture
+def dashboard_page(page):
+    return DashboardPage(page)
 
 @pytest.fixture(scope="function")
 def login_page_instance(page):
