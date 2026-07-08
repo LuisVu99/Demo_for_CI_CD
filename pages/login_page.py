@@ -8,11 +8,13 @@ class LoginPage(BasePage):
     def navigate_to_login(self):
         self.click(LoginLocator.LOGIN_NAV)
 
-    def login(self, email: str, password: str,verify_login: str):
-        self.fill(LoginLocator.LOGIN_EMAIL, email)
-        self.fill(LoginLocator.LOGIN_PASS, password)
+    def login(self, email: str, password: str):
+        self.fill(LoginLocator.EMAIL, email)
+        self.fill(LoginLocator.PASSWORD, password)
         self.click(LoginLocator.LOGIN_BUTTON)
-        self.assert_text_contain(LoginLocator.VERIFY_LOGIN, verify_login)
+
+    def expect_dash_board_visible(self):
+        self.is_visible(LoginLocator.DASHBOARD_NAV)
 
     def signup(self, username: str, email: str, account_information: str, password: str, day: str,
                month: str, year: str, address_information: str, first_name: str, last_name: str, company: str, 
