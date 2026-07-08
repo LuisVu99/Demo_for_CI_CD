@@ -44,7 +44,7 @@ jobs:
 
       - name: Run test
         id: test
-        run: pytest --alluredir=allure-results -v --tb=short > test_results.txt 2>&1 || true
+        run: pytest --alluredir=allure-results -v --tb=short
         env:
           base_url: ${{ vars.REPO_BASE_URL }}
           ADMIN_EMAIL: ${{ secrets.admin_email }}
