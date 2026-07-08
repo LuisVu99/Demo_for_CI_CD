@@ -53,9 +53,9 @@ def page_with_video(context, request):
         AllureHelper.attach_video(video_path, name=f"{request.node.name}_video")
 
 @pytest.fixture(scope="session")
-def browser(pytestconfig):
+def browser(browser_name):
     """Khởi tạo Browser 1 lần cho cả session."""
-    browser_name = pytestconfig.getoption("--browser-name")
+    # browser_name = pytestconfig.getoption("--browser-name")
     with sync_playwright() as p:
         browser_type = getattr(p, browser_name)
         browser = browser_type.launch(headless=BrowserConfig.HEADLESS)
@@ -98,7 +98,7 @@ def page(context, request):
     page.close()
 
 @pytest.fixture(scope="function")
-def login(page):
+def login_page(page):
     """Login fixture - use this to automatically login before test.
     
     Usage in your test:
@@ -107,11 +107,9 @@ def login(page):
             ...
     """
     login_page = LoginPage(page)
-    # Perform login with admin credentials
-    login_page.navigate_to_login()
-    login_page.login(Credentials.ADMIN_EMAIL, Credentials.ADMIN_PASSWORD, Credentials.ADMIN_USERNAME)
+    login_page.login(Credentials.ADMIN_EMAIL, Credentials.ADMIN_PASSWORD)
     # Return the logged-in page
-    return page
+    return login_page
 
 @pytest.fixture(scope="function")
 def login_page_instance(page):

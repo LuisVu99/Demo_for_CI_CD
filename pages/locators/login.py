@@ -1,9 +1,9 @@
 class LoginLocator:
     #1. New user signup
-    LOGIN_NAV = "//ul[@class='nav navbar-nav']//li[4]"
-    SIGNUP_NAME = "//input[@placeholder='Name']"
-    SIGNUP_EMAIL = "//input[@data-qa='signup-email']"
-    SIGNUP_BUTTON= "//BUTTON[@data-qa='signup-button']"
+    EMAIL = "#email"
+    PASSWORD = "#password"
+    LOGIN_BUTTON = "//button[@type='submit']"
+    DASHBOARD_NAV= "//li[@class='menu-item-dashboard active']"
     #2. Enter information
     ACCOUNT_INFORMATION = "(//h2[@class='title text-center'])[1]"
     TITLE = "//div[@class='radio-inline'][1]//label"
@@ -38,7 +38,7 @@ class LoginLocator:
     #5. Login with account
     LOGIN_EMAIL = "//input[@data-qa='login-email']"
     LOGIN_PASS = "//input[@data-qa='login-password']"
-    LOGIN_BUTTON = "//button[@data-qa='login-button']"
+    # LOGIN_BUTTON = "//button[@data-qa='login-button']"
     INCORRECT_CREDENTIAL = "//form[@action='/login']//p"
 
     #5. Logout
