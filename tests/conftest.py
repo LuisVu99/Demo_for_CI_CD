@@ -13,6 +13,7 @@ from tests.api.helpers.api_task import api_create_task, api_delete_task
 from config import ConfigUrl, BrowserConfig, Paths, ENVIRONMENTS, Credentials
 from pages.login_page import LoginPage
 from pages.dashboard_page import DashboardPage
+from helpers.login_manager import LoginManager 
 
 #Browser list
 BROWSER = ["chromium", "firefox", "webkit"]
@@ -30,7 +31,7 @@ def env_config(request):
     env_name = request.config.getoption("--env")
     return ENVIRONMENTS[env_name]
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def browser_name(request):
     return request.config.getoption("--browser-name")
 
@@ -82,7 +83,7 @@ def page(context, request):
     """Khởi tạo Page, luôn chụp screenshot, attach video khi fail."""
     page = context.new_page()
     page.goto(ConfigUrl.BASE_URL)
-    LoginPage(page).login(Credentials.ADMIN_EMAIL, Credentials.ADMIN_PASSWORD)
+    LoginManager().ensure_login(page, username=Credentials.ADMIN_EMAIL, password=Credentials.ADMIN_PASSWORD, env = "stg")
     yield page
 
     # Always capture screenshot

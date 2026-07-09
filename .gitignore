@@ -60,7 +60,9 @@ allure-report/
 allure-history/
 
 auth.json
+auth_*.json
 cookies.json
 storageState.json
+*.auth.json
 
 *.webm
