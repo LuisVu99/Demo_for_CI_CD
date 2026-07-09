@@ -1,4 +1,0 @@
-Fill successfully #email with text 'admin@example.com'
-Fill successfully #password with text '123456'
-Click successfully //button[@type='submit']
-Element '//li[@class='menu-item-dashboard active']//a' visible: True
